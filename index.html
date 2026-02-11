@@ -14,14 +14,25 @@ body{
   font-family: 'Segoe UI';
   text-align:center;
   overflow:hidden;
+  margin:0;
 }
+
+/* CENTRAR TODO */
+#inicio, #sorpresa{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+/* CORAZÓN */
 .heart{
   width:200px;
   height:180px;
   background:#ff2e63;
   position:relative;
   transform: rotate(-45deg);
-  margin:auto;
+  margin-bottom:30px;
 }
 .heart:before,.heart:after{
   content:"";
@@ -31,39 +42,42 @@ body{
 }
 .heart:before{ top:-100px; left:0; }
 .heart:after{ left:100px; top:0; }
-.contenedor{
-  color:white; position:absolute;
-  transform:rotate(45deg);
-  width:250px; top:50px; left:-25px;
-}
+
+h2{ color:white; }
+
 button{
-  padding:10px 20px;margin:10px;border:none;
-  border-radius:10px;background:white;
-  color:#ff2e63;font-weight:bold;
-  cursor:pointer;font-size:16px;
+  padding:12px 25px;
+  margin:10px;
+  border:none;
+  border-radius:12px;
+  background:white;
+  color:#ff2e63;
+  font-weight:bold;
+  cursor:pointer;
+  font-size:18px;
 }
-#sorpresa{ display:none; animation:fade 1s forwards; }
+
+#sorpresa{ display:none; }
+
 img{
-  width:260px;border-radius:20px;
-  box-shadow:0 0 20px rgba(0,0,0,0.4);
-}
-@keyframes fade{
-  from{opacity:0; transform:scale(0.5);}
-  to{opacity:1; transform:scale(1);}
+  width:280px;
+  border-radius:20px;
+  box-shadow:0 0 25px rgba(0,0,0,0.4);
+  margin-bottom:20px;
 }
 </style>
 </head>
 
 <body>
 
-<audio autoplay loop>
+<audio id="musica" autoplay loop>
   <source src="Magia.mp3" type="audio/mpeg">
 </audio>
 
 <div id="inicio">
   <div class="heart"></div>
-  <div class="contenedor">
-    <h2>¿Quieres ser mi San Valentín?</h2>
+  <h2>¿Quieres ser mi San Valentín?</h2>
+  <div>
     <button onclick="abrir()">Sí 💖</button>
     <button onclick="abrir()">Obvio que sí 😍</button>
   </div>
@@ -71,7 +85,7 @@ img{
 
 <div id="sorpresa">
   <img src="foto.jpg">
-  <h2 style="color:white; margin-top:20px;">
+  <h2>
     Gracias por estar conmigo,<br>
     soy la persona más afortunada por tenerte a mi lado.<br>
     Te amo ♥️
@@ -81,7 +95,11 @@ img{
 <script>
 function abrir(){
   document.getElementById("inicio").style.display="none";
-  document.getElementById("sorpresa").style.display="block";
+  document.getElementById("sorpresa").style.display="flex";
+  
+  // fuerza a reproducir música en móviles
+  var audio = document.getElementById("musica");
+  audio.play();
 }
 </script>
 
